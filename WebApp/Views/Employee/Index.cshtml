@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApp.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 offset-1 text-center">
+            <a class="btn btn-outline-info float-right mb-3 mt-1" asp-controller="Employee" asp-action="Create">Create Employee</a>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int counter = 1;
+                    }
+                    @foreach (var employeeModelData in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@counter</td>
+                            <td>@employeeModelData.Name</td>
+                            <td>@employeeModelData.City</td>
+                            <td>@employeeModelData.State</td>
+                            <td>@employeeModelData.Salary</td>
+                            <td>
+                                <a class="btn btn-outline-warning" asp-controller="Employee" asp-action="Edit" asp-route-id="@employeeModelData.Id">Edit</a>&nbsp;
+                                <a class="btn btn-outline-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@employeeModelData.Id">Delete</a>
+                            </td>
+                        </tr>
+                        ++counter;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
